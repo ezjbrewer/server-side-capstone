@@ -1,0 +1,19 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75%;
+    margin: 25px auto;
+}
+
+.home-card {
+    padding: 25px;
+    font-size: 30px;
+    width: 80%;
+    background-color: orange;
+}
+
+.home-btn {
+    margin: 20px auto;
+    font-size: 30px;
+}

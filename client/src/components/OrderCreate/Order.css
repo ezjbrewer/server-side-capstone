@@ -1,0 +1,115 @@
+.order-view-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 25px auto;
+    width: 75%;
+    padding: 25px;
+}
+
+.sandwich-list {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    padding: 25px;
+    width: 75%;
+}
+
+.price-order {
+    margin: 30px auto 0px auto;
+    border-top: 3.5px solid black;
+    width: 75%;
+}
+
+.order-options {
+    padding: 25px;
+    width: 75%;
+}
+
+.order-btn {
+    margin: 10px auto;
+    width: 75%;
+}
+
+.sandwich-creator-container {
+    display: flex;
+    margin: 20px;
+}
+
+.btn-container {
+    width: 30%;
+}
+
+.tab-btn-container {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.tab-btn {
+    margin: 5px auto;
+    width: 90%;
+}
+
+.option-btn {
+    margin: 5px auto;
+    width: 90%;
+}
+
+.ingredient-container {
+    width: 30%;
+}
+
+.display-container {
+    width: 30%;
+}
+
+.sandwich-item-display {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+}
+
+.sandwich-list-render {
+    border-top: 3.5px solid black;
+    padding-top: 10px;
+}
+
+.sandwich-item {
+    margin-bottom: 10px;
+    margin-right: 10px
+}
+
+.sandwich-options {
+    display: flex;
+    flex-direction: column;
+}
+
+.sandwich-option {
+    margin: 5px 0px;
+    font-size: 12px;
+}
+
+.order-landing-container {
+    display: flex;
+    margin: 25px auto;
+    width: 50%;
+    padding: 25px;
+    background-color: orange;
+}
+
+.order-landing-welcome {
+    text-align: center;
+}
+
+.order-landing-btn-container {
+    text-align: center;
+}
+
+.order-landing-btn {
+    font-size: 25px;
+}
+
+.ingredient-tooltip {
+    background-color: #f0f0f0f0 0;
+}

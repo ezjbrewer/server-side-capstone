@@ -1,0 +1,87 @@
+.order-tracker-container {
+    width: 75%;
+    margin: 25px auto;
+    text-align: center;
+}
+
+.status-heading {
+    padding: 25px;
+}
+
+.status-order {
+    padding: 20px;
+}
+
+.order-heading {
+    border-bottom: 3.5px solid rgba(0, 0, 0, 0.5);
+    width: 30%;
+    padding: -5px;
+    margin: 0px auto;
+    color:rgba(0, 0, 0, 0.5);;
+}
+
+.sandwich-card {
+    padding: 10px;
+    width: 50%;
+    margin: 10px auto;
+}
+
+.sandwich-items {
+    margin-top: 10px;
+}
+
+.ingredient-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.sandwich-track-gif {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+.tracking-btn {
+    height: 5%;
+    margin-top: 25px;
+    margin-left: 25px;
+    font-size: 25px;
+}
+
+.tracking-order-view {
+    display: flex;
+}
+
+.tracking-hub-container {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    margin: 25px auto;;
+}
+
+.heading {
+    text-align: center;
+    padding: 25px;
+    margin-bottom: 25px;
+    font-size: 25px;
+}
+
+.order-card {
+    padding: 25px;
+    width: 75%;
+    margin: 10px;
+}
+
+.active-orders-container {
+    padding: 10px;
+    margin: 10px;
+}
+
+.inactive-orders-container {
+    padding: 10px;
+    margin: 10px;
+}
+
+.details-btn {
+    width: 50%;
+}

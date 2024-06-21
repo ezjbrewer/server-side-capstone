@@ -1,0 +1,21 @@
+.ingredients-container {
+    padding: 25px;
+}
+
+h2 {
+    text-align: center;
+}
+
+.ingredient-btns {
+    width: 10%;
+}
+
+.ingredient-btn {
+    width: 100%;
+    margin: 2.5px auto;
+    font-size: 15px;
+}
+
+.table-item {
+    font-size: 30px;
+}

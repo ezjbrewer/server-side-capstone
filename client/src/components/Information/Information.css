@@ -1,0 +1,17 @@
+.info-container {
+    display: flex;
+    width: 50%;
+    margin: 25px auto;
+    justify-content: space-evenly;
+    font-size: larger;
+}
+
+.info-card {
+    width: 40%;
+    text-align: center;
+    padding: 20px;
+}
+
+.info-header {
+    border-bottom: 3.5px solid black;
+}

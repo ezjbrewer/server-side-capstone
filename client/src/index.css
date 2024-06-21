@@ -1,0 +1,15 @@
+.teko {
+  font-family: "Teko", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+}
+
+body {
+  margin: 0;
+  font-family: Teko
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
