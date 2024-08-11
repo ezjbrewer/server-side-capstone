@@ -1,3 +1,14 @@
+### Super Sandwich Makers README Documentation
+
+### Technolgies Used:
+- JavaScript
+- ReactJS
+- HTML
+- CSS
+- C#
+- .NET
+- SQL
+
 ### Setup
 
 - Run `dotnet restore` to install dependencies
