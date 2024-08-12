@@ -1,5 +1,13 @@
 ### Super Sandwich Makers README Documentation
 
+### About
+
+Super Sandwich Makers is a full-stack ordering based app. Aiming to design to streamline the process of ordering and the best user-experience, this app's purpose is to be the center of operations for the pseudo-restaurant.
+
+### Goals
+- Tailor towards user experience
+- Achieve full CRUD mechanics
+
 ### Technolgies Used:
 - JavaScript
 - ReactJS
