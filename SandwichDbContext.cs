@@ -32,6 +32,12 @@ public class SandwichDbContext : IdentityDbContext<IdentityUser>
             Name = "Admin",
             NormalizedName = "admin"
         });
+        modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
+        {
+            Id = "e4aaeb97-d2ba-4a53-a521-4eea61e59b36",
+            Name = "Employee",
+            NormalizedName = "employee"
+        });
 
         modelBuilder.Entity<IdentityUser>().HasData(new IdentityUser[]
         {
@@ -77,6 +83,27 @@ public class SandwichDbContext : IdentityDbContext<IdentityUser>
                 Email = "Eve@Davis.comx",
                 PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, _configuration["AdminPassword"])
             },
+            new IdentityUser
+            {
+                Id = "dof40bc6-0829-4ac5-a3ed-180f5e916a5d",
+                UserName = "DoxFox",
+                Email = "dox@fox.comx",
+                PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, _configuration["AdminPassword"])
+            },
+            new IdentityUser
+            {
+                Id = "sal40bc6-0829-4ac5-a3ed-180f5e916a5s",
+                UserName = "SallyHembringe",
+                Email = "sally@hembringe.comx",
+                PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, _configuration["AdminPassword"])
+            },
+            new IdentityUser
+            {
+                Id = "lou40bc6-0829-4ac5-a3ed-180f5e916a5l",
+                UserName = "LouieDohg",
+                Email = "louie@dohg.comx",
+                PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, _configuration["AdminPassword"])
+            }
 
         });
 
@@ -92,8 +119,23 @@ public class SandwichDbContext : IdentityDbContext<IdentityUser>
                 RoleId = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
                 UserId = "d8d76512-74f1-43bb-b1fd-87d3a8aa36df"
             },
-
+             new IdentityUserRole<string>
+            {
+                RoleId = "e4aaeb97-d2ba-4a53-a521-4eea61e59b36",
+                UserId = "dof40bc6-0829-4ac5-a3ed-180f5e916a5d"
+            },
+            new IdentityUserRole<string>
+            {
+                RoleId = "e4aaeb97-d2ba-4a53-a521-4eea61e59b36",
+                UserId = "sal40bc6-0829-4ac5-a3ed-180f5e916a5s"
+            },
+            new IdentityUserRole<string>
+            {
+                RoleId = "e4aaeb97-d2ba-4a53-a521-4eea61e59b36",
+                UserId = "lou40bc6-0829-4ac5-a3ed-180f5e916a5l"
+            }
         });
+
         modelBuilder.Entity<UserProfile>().HasData(new UserProfile[]
         {
             new UserProfile
@@ -143,6 +185,30 @@ public class SandwichDbContext : IdentityDbContext<IdentityUser>
                 LastName = "Davis",
                 CreateDateTime = new DateTime(2022, 10, 18),
                 IdentityUserId = "d224a03d-bf0c-4a05-b728-e3521e45d74d",
+            },
+            new UserProfile
+            {
+                Id = 7,
+                FirstName = "Dox",
+                LastName = "Fox",
+                CreateDateTime = new DateTime(2024, 1, 1),
+                IdentityUserId = "dof40bc6-0829-4ac5-a3ed-180f5e916a5d",
+            },
+            new UserProfile
+            {
+                Id = 8,
+                FirstName = "Sally",
+                LastName = "Hembringe",
+                CreateDateTime = new DateTime(2024, 1, 1),
+                IdentityUserId = "sal40bc6-0829-4ac5-a3ed-180f5e916a5s",
+            },
+            new UserProfile
+            {
+                Id = 9,
+                FirstName = "Louie",
+                LastName = "Dohg",
+                CreateDateTime = new DateTime(2024, 1, 1),
+                IdentityUserId = "lou40bc6-0829-4ac5-a3ed-180f5e916a5l",
             }
         });
 
@@ -327,6 +393,24 @@ public class SandwichDbContext : IdentityDbContext<IdentityUser>
 
         modelBuilder.Entity<SandwichIngredient>()
             .HasKey(si => new { si.SandwichId, si.IngredientId });
+
+        modelBuilder.Entity<SandwichIngredient>()
+            .HasOne(si => si.Sandwich)
+            .WithMany(s => s.SandwichIngredients)
+            .HasForeignKey(si => si.SandwichId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<SandwichIngredient>()
+            .HasOne(si => si.Ingredient)
+            .WithMany(i => i.SandwichIngredients)
+            .HasForeignKey(si => si.IngredientId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Order>()
+            .HasMany(o => o.Sandwiches)
+            .WithOne(s => s.Order)
+            .HasForeignKey(s => s.OrderId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<SandwichIngredient>()
             .HasOne(si => si.Sandwich)

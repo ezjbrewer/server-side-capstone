@@ -10,6 +10,7 @@ import { ContactUs } from "./Information/ContactUs.jsx";
 import { OrderTracker } from "./OrderTracker/OrderTracker.jsx";
 import { OrderTrackerHub } from "./OrderTracker/OrderTrackerHome.jsx";
 import { Ingredient } from "./Ingredients/Ingredient.jsx";
+import { ActiveOrders } from "./EmployeeViews/ActiveOrders.jsx";
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
 
@@ -50,6 +51,16 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
               <AuthorizedRoute loggedInUser={loggedInUser} roles={["Admin"]}>
                 <Ingredient />
               </AuthorizedRoute>}
+          />
+        </Route>
+        <Route path="activeOrders">
+          <Route
+            index
+            element={
+              <AuthorizedRoute loggedInUser={loggedInUser} roles={["Employee"]}>
+                <ActiveOrders />
+              </AuthorizedRoute>
+            }
           />
         </Route>
         <Route path="information">

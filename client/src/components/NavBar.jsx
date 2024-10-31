@@ -39,7 +39,7 @@ return (
                     Track Order
                 </NavLink>
                 </NavItem>
-                {loggedInUser.roles.includes("Admin") && (
+                {loggedInUser?.roles.includes("Admin") && (
                     <>
                         <NavItem>
                         <NavLink tag={RRNavLink} to="/ingredient">
@@ -48,6 +48,15 @@ return (
                         </NavItem>
                     </>
                 )}
+                {loggedInUser?.roles.includes("Employee") && (
+                        <>
+                            <NavItem>
+                                <NavLink tag={RRNavLink} to="/activeOrders">
+                                    Active Orders
+                                </NavLink>
+                            </NavItem>
+                        </>
+                    )}
                 <NavItem>
                 <NavLink tag={RRNavLink} to="/information">
                     Contact Us

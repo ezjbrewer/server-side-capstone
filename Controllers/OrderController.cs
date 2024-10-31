@@ -174,8 +174,56 @@ namespace Sandwich.Controllers
                 order.CalculateTotalPrice();
             }
 
-            return Ok(orders);
-            
+            return Ok(orders);  
+        }
+
+        [HttpGet("activeOrders")]
+        public IActionResult GetAllActiveOrders()
+        {
+            var activeOrders = _dbContext.Orders
+                                .Where(o => o.StatusId != 1 || o.StatusId != 5)
+                                .Include(o => o.Sandwiches)
+                                    .ThenInclude(s => s.SandwichIngredients)
+                                        .ThenInclude(si => si.Ingredient);
+
+            var activeOrdersDTO = activeOrders.Select(aO => new OrderDTO
+            {
+                Id = aO.Id,
+                            TotalPrice = aO.TotalPrice,
+                            CustomerId = aO.CustomerId,
+                            Customer = null,
+                            StatusId = aO.StatusId,
+                            Status = new StatusDTO
+                            {
+                                Id = aO.Status.Id,
+                                Name = aO.Status.Name
+                            },
+                            IsActive = aO.IsActive,
+                            OrderReceived = aO.OrderReceived,
+                            Sandwiches = aO.Sandwiches.Select(s => new SandwichDTO
+                            {
+                                Id = s.Id,
+                                SandwichIngredients = s.SandwichIngredients.Select(si => new SandwichIngredientDTO
+                                {
+                                    Id = si.Id,
+                                    SandwichId = si.SandwichId,
+                                    Sandwich = null,
+                                    IngredientId = si.IngredientId,
+                                    Ingredient = new IngredientDTO
+                                    {
+                                        Id = si.Ingredient.Id,
+                                        Name = si.Ingredient.Name,
+                                        Price = si.Ingredient.Price,
+                                        Calories = si.Ingredient.Calories,
+                                        TypeId = si.Ingredient.TypeId,
+                                        SandwichIngredients = null
+                                    }
+                                }).ToList(),
+                                CustomerId = s.CustomerId
+                            }).ToList()
+            }).ToList();
+
+            return Ok(activeOrdersDTO);
         }
 
         [HttpPost]
@@ -211,7 +259,6 @@ namespace Sandwich.Controllers
             _dbContext.SaveChanges();
 
             return NoContent();
-
         }
     }   
 }
