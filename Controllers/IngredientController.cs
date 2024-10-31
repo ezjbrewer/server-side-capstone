@@ -31,11 +31,9 @@ namespace Sandwich.Controllers
                 case 1:
                 ingredients =  _dbContext.Ingredients.Include(i => i.Type).Where(i => i.TypeId == 1).ToList();
                 break;
-                // meat
                 case 2:
                 ingredients =  _dbContext.Ingredients.Include(i => i.Type).Where(i => i.TypeId == 2).ToList();
                 break;
-                //toppings
                 case 3:
                 ingredients =  _dbContext.Ingredients.Include(i => i.Type).Where(i => i.TypeId > 2).ToList();
                 break;

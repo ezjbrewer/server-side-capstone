@@ -14,6 +14,8 @@ export const SandwichCreator = ({ setView, sandwichArr, setSandwichArr, loggedIn
     const [meatChoice, setMeatChoice] = useState([])
     const [toppingChoice, setToppingChoice] = useState([])
 
+    const [calories, setCalories] = useState(0)
+
     const [isVegetarian, setIsVegetarian] = useState(false)
     const [canAddSandwich, setAddSandwich] = useState(false)
 
@@ -30,6 +32,23 @@ export const SandwichCreator = ({ setView, sandwichArr, setSandwichArr, loggedIn
             setAddSandwich(false)
         }
     }, [breadChoice, toppingChoice])
+
+    useEffect(() => {
+        let totalMeatCalories = 0
+        let totalToppingCalories = 0
+        
+        meatChoice.forEach((meat) => {
+            totalMeatCalories += meat.calories
+        })
+
+        toppingChoice.forEach((topping) => {
+            totalToppingCalories += topping.calories
+        })
+        
+        const totalCalories = breadChoice.calories + totalMeatCalories + totalToppingCalories
+        setCalories(totalCalories)
+
+    }, [breadChoice, meatChoice, toppingChoice])
 
     const toggleModal = () => setModal(!modal);
 
@@ -55,9 +74,11 @@ export const SandwichCreator = ({ setView, sandwichArr, setSandwichArr, loggedIn
     const handleAddSandwich = () => {
         const newSandwich = {
             customerId: loggedInUser?.id,
-            ingredients: []
+            ingredients: [],
+            calories: 0
         }
 
+        newSandwich.calories = calories
         newSandwich.ingredients.push(breadChoice)
         meatChoice.map((m) => {
             return newSandwich.ingredients.push(m)

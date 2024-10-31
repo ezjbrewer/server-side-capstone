@@ -20,43 +20,45 @@ export const OrderTracker = () => {
     }, [id]);
 
     return (
-        <div className="tracking-order-view">
-            <Button 
-                color="warning"
-                className="tracking-btn"
-                onClick={() => navigate("/order/tracking")}
-                >
-                    Tracking Hub
-            </Button>
-            <div className="order-tracker-container">
-                <div className="heading">
-                    <div className="status-heading">
-                        <h3>
-                            Your order status is: {order?.status?.name}
+        <Card>
+            <div className="tracking-order-view">
+                <Button 
+                    color="warning"
+                    className="tracking-btn"
+                    onClick={() => navigate("/order/tracking")}
+                    >
+                        Tracking Hub
+                </Button>
+                <div className="order-tracker-container">
+                    <div className="heading">
+                        <div className="status-heading">
+                            <h3>
+                                Your order status is: {order?.status?.name}
+                            </h3>
+                        </div>
+                    </div>
+                    <img src={sandwichTrackGif} alt="Sandwich Track" className="sandwich-track-gif" />
+                    <Card className="status-order">
+                        <h3 className="order-heading">
+                            Order
                         </h3>
-                    </div>
+                        <div className="sandwich-items">
+                            {order.sandwiches.map((s) => (
+                                <Card className="sandwich-card" key={s.id}>
+                                    <h5>
+                                        {s.sandwichIngredients.find((i) => i.ingredient.typeId === 1)?.ingredient.name} Sandwich
+                                    </h5>
+                                    <ul className="ingredient-list">
+                                        {s.sandwichIngredients.map((ingredientItem) => (
+                                            <li key={ingredientItem.id}>{ingredientItem.ingredient.name}</li>
+                                        ))}
+                                    </ul>
+                                </Card>
+                            ))}
+                        </div>
+                    </Card>
                 </div>
-                <img src={sandwichTrackGif} alt="Sandwich Track" className="sandwich-track-gif" />
-                <Card className="status-order">
-                    <h3 className="order-heading">
-                        Order
-                    </h3>
-                    <div className="sandwich-items">
-                        {order.sandwiches.map((s) => (
-                            <Card className="sandwich-card" key={s.id}>
-                                <h5>
-                                    {s.sandwichIngredients.find((i) => i.ingredient.typeId === 1)?.ingredient.name} Sandwich
-                                </h5>
-                                <ul className="ingredient-list">
-                                    {s.sandwichIngredients.map((ingredientItem) => (
-                                        <li key={ingredientItem.id}>{ingredientItem.ingredient.name}</li>
-                                    ))}
-                                </ul>
-                            </Card>
-                        ))}
-                    </div>
-                </Card>
             </div>
-        </div>
+        </Card>
     );
 }

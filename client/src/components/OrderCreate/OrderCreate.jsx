@@ -12,7 +12,6 @@ export const OrderCreate = ({loggedInUser}) => {
     const [view, setView] = useState(1)
     const [sandwichArr, setSandwichArr] = useState([])
     const [price, setPrice] = useState(0)
-    const [calories, setCalories] = useState(0)
     
     const [sandwichToDelete, setSandwichToDelete] = useState(null)
     const [sandwichToUpdate, setSandwichToUpdate] = useState(null)
@@ -32,18 +31,6 @@ export const OrderCreate = ({loggedInUser}) => {
         });
     
         setPrice(totalPrice);
-    }, [sandwichArr]);
-
-    useEffect(() => {
-        let totalCalories = 0
-    
-        sandwichArr.forEach(sandwich => {
-            sandwich.ingredients.forEach((ingredient) => {
-                totalCalories += ingredient?.calories || 0;
-            });
-        });
-    
-        setCalories(totalCalories);
     }, [sandwichArr]);
     
     const toggleModal = () => setModal(!modal)
@@ -113,7 +100,7 @@ export const OrderCreate = ({loggedInUser}) => {
                                 <div className="sandwich-item-display" key={index}>
                                     <div className="sandwich-item">
                                         <h5>
-                                            {s.ingredients.find(i => i.typeId === 1)?.name} Sandwich • {calories} calories
+                                            {s.ingredients.find(i => i.typeId === 1)?.name} Sandwich • {s.calories} calories
                                         </h5>
                                         <ul>
                                             {s.ingredients.filter(i => i.typeId !== 1).map((i) => (
